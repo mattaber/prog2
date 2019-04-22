@@ -1,0 +1,85 @@
+void best_first_B&B(st_sp_tr T, number& best) {
+    priority_queue PQ;
+    node u, v;
+    //initialize
+    initialize(PQ);
+    v=root of T;
+    best=value(v);
+    insert(PQ,v);
+
+    while (! empty(PQ)) {
+        remove(PQ, v);
+        if (bound(v) is better than best)
+        //Expand v if can lead to better solution
+        for (each child u of v) {
+            if (value(u) is better than best)
+                best=value(u);
+            //Add u to PQ if bound(u) better
+            if (bound(u) is better than best)
+                insert(PQ, u)
+        }
+    }
+}
+
+void knapsack3(int n, const int p[ ], const int w[ ], int W, int maxprofit) {
+        priority_queue_of_node Q;
+        node u,v;
+        init(PQ);
+        maxprofit=0; //v is root
+        v.level=0;
+        v.profit=0;
+        v.weight=0;
+        v.bound=bound(v)
+        enqueue(PQ, v);
+////////////////////////////////////////////////////////////////////////////////
+        while (! empty(PQ)) {
+            remove(PQ, v); //with best bound
+            if (v.bound>maxprofit) {//expand v
+                u.level= v.level+1; //u child of v
+                //”yes” child
+                u.weight= v.weight+w[u.level];
+                u.profit= v.profit+p[u.level];
+
+            if ((u.weight<=W) && (u.profit>maxprofit))
+                maxprofit=profit;
+            if (bound(u)>maxprofit)
+                insert(PQ, u);
+
+                //”No” child
+            u.weight= v.weight; //not included
+            u.profit= v.profit;
+            u.bound=bound(u)
+            if (u.bound>maxprofit)
+                insert(PQ, u);
+        }//node not expanded
+    } //queue is empty
+}
+
+
+
+
+
+
+/*
+int
+bound(int i, int n, int capacity, const int p[], const int w[], int weight, int profit) {
+    int bound = profit;
+    int x[n+1];
+    for(int j = i; j <= n; ++j) {
+        x[j] = 0;
+    }
+    while((weight < capacity) && (i <= n)) {
+        if(weight + w[i] <= capacity) {
+            x[i] = 1;
+            weight += w[i];
+            bound += p[i];
+        } else {
+            x[i] = (capacity - weight) / w[i];
+            weight = capacity;
+            bound += p[i] * x[i];
+        }
+        ++i;
+    }
+    return bound;
+}
+*/
